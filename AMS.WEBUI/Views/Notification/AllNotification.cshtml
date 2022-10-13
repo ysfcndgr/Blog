@@ -1,0 +1,19 @@
+﻿@model List<AMS.Model.Relotional.Notification>
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<table class="table table-borderless">
+    <tr>
+        <th>#</th>
+        <th>Bildirim</th>
+        <th>Zaman</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <td>@item.Id</td>
+        <td>@item.NotificationDetail</td>
+        <td>@item.NotificationDateTime.ToShortTimeString()</td>
+    }
+</table>

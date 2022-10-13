@@ -1,0 +1,73 @@
+﻿@model List<AMS.Model.Relotional.Blog>
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+@if (ViewBag.AlertModel!=null)
+{
+    <p>@ViewBag.AlertModel</p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Başlık
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Kategori
+        </th>
+        <th>
+            Durum
+        </th>
+        <th>
+            Sil
+        </th>
+        <th>
+            Güncelle
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @item.Id
+            </th>
+            <th>
+                @item.BlogTitle
+            </th>
+            <th>
+                @item.BlogCreateDate
+            </th>
+            <th>
+                @item.Category.CategoryName
+            </th>
+            <th>
+                @if (item.BlogStatus)
+                {
+                    <p class="badge badge-gradient-success">Aktif</p>
+                }
+                else
+                {
+                    <p class="badge badge-gradient-danger">Pasif</p>
+
+                }
+            </th>
+            <th>
+                <a class="btn btn-gradient-danger" asp-controller="Writer" asp-action="Delete" asp-route-Id="@item.Id">Sil</a>
+            </th>
+            <th>
+                <a class="btn btn-gradient-warning" asp-controller="Writer" asp-action="Update" asp-route-Id="@item.Id">Güncelle</a>
+
+            </th>
+        </tr>
+
+    }
+</table>
+<a class="btn btn-gradient-primary" asp-controller="Writer" asp-action="BlogAdd">Yeni Blog Ekle</a>

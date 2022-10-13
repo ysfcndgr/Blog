@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AMS.Model.Relotional.Blog>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sizin Son 5 Blog Yazınız</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Başlık </th>
+                                <th> Tarih </th>
+                                <th> Durum </th>
+                                <th> Kategori </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> @item.Id </td>
+                                    <td> <a target="_blank" asp-controller="Blog" asp-route-Id="@item.Id" asp-action="BlogDetails">@item.BlogTitle</a> </td>
+                                    <td> @item.BlogCreateDate.ToShortDateString()</td>
+                                    <td>
+                                        @if (item.BlogStatus)
+                                        {
+                                            <label class="badge badge-gradient-success">Aktif</label>
+
+                                        }
+                                        else
+                                        {
+                                            <label class="badge badge-gradient-danger">Pasif</label>
+                                        }
+                                    </td>
+                                    <td> @item.Category.CategoryName </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

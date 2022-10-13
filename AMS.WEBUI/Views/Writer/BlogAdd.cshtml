@@ -1,0 +1,26 @@
+﻿@model AMS.Model.Relotional.Blog
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<form asp-controller="Writer" asp-action="BlogAdd" method="post">
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x=>x.BlogTitle, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.BlogTitle)
+    <br />
+    @Html.Label("Görsel")
+    @Html.TextBoxFor(x=>x.BlogImage, new {@class="form-control"})
+    <br />
+    @Html.Label("ThumbNail")
+    @Html.TextBoxFor(x=>x.BlogThumbnailImage, new {@class="form-control"})
+    <br />
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x=>x.CategoryId, (List<SelectListItem>)ViewBag.Categories,"Kategori Seçiniz...", new {@class ="form-control"})
+    <br />
+    @Html.Label("İçerik")
+    @Html.TextAreaFor(x=>x.BlogContent,15,3, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.BlogContent)
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>

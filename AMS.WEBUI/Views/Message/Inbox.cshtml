@@ -1,0 +1,47 @@
+﻿@model List<AMS.Model.Relotional.NewMessage>
+@{
+    ViewData["Title"] = "Detaylar";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Konu
+        </th>
+        <th>
+            Gönderen
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Mesajı Aç
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @item.Id
+            </th>
+            <th>
+                @item.Subject
+            </th>
+            <th>
+                @item.SenderUser.WriterName
+            </th>
+            <th>
+                @item.Date.ToShortDateString()
+            </th>
+            <th>
+             <a class="btn btn-gradient-success" asp-controller="Message" asp-action="MessageDetails" asp-route-Id="@item.Id">Mesaja Git</a>
+            </th>
+        </tr>
+    }
+</table>
+<a class="btn btn-gradient-primary" asp-controller="Message" asp-action="CreateMessage">Mesaj Gönder</a>
